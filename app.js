@@ -32,6 +32,7 @@ function verifFunc(tabResultats) {
 }
 // console.log(verifTableau);
 afficherResultats(verifTableau);
+couleursFonction(verifTableau);
 verifTableau = [];
 }
 
@@ -66,7 +67,7 @@ switch(nbDeFautes) {
         noteResultat.innerText = '1/5'
         break;
     case 5:
-        titreResultat.innerText = `👎 On n'abandonne pas ! 👎`
+        titreResultat.innerText = `👎 Allez, on recommence ! 👎`
         aideResultat.innerText = 'Retentez une autre réponse dans les cases rouges, puis re-validez !'
         noteResultat.innerText = '0/5'
     break;
@@ -75,3 +76,24 @@ switch(nbDeFautes) {
         'Woops, cas inattendu';
     }
 }
+
+function couleursFonction(tabValBool) {
+    for(let j = 0; j < tabValBool.length; j++){
+
+        if(tabValBool[j] === true){
+            toutesLesQuestions[j].style.background = 'lightgreen';
+        } else {
+            toutesLesQuestions[j].style.background = 'crimson';
+            toutesLesQuestions[j].classList.add('echec');
+
+            setTimeout(() => {
+                toutesLesQuestions[j].classList.remove('echec');
+            }, 500)
+        }
+    }
+}
+toutesLesQuestions.forEach(item => {
+    item.addEventListener('click', () => {
+        item.style.background = "lightgrey";
+    })
+})
